@@ -7,17 +7,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:th="http://thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
     </head>
-    
+
     <body>
-     
-    <head th:replace="~{layout/plantilla :: header}">
-        
-    </head>
-        
-    <footer th:replace="~{layout/plantilla :: footer}">
-            
-    </footer>    
-        
+
+        <head th:replace="~{layout/plantilla :: header}"</head>
+
+
+
+        <section th:replace="~{categoria/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{categoria/fragmentos :: agregarCategoria}"/>
+        <section th:replace="~{categoria/fragmentos :: listadoCategorias}"/>
+
+
+
+        <footer th:replace="~{layout/plantilla :: footer}"</footer>  
     </body>
 </html>
-s
