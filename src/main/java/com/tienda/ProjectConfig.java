@@ -1,5 +1,5 @@
 package com.tienda;
- 
+
 import java.util.Locale;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
- 
+
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
     /* Los siguientes métodos son para incorporar el tema de internacionalización en el proyecto */
@@ -24,7 +24,7 @@ public class ProjectConfig implements WebMvcConfigurer {
         slr.setTimeZoneAttributeName("session.current.timezone");
         return slr;
     }
- 
+
     /* localeChangeInterceptor se utiliza para crear un interceptor de cambio de idioma*/
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
@@ -32,12 +32,12 @@ public class ProjectConfig implements WebMvcConfigurer {
         lci.setParamName("lang");
         return lci;
     }
- 
+
     @Override
     public void addInterceptors(InterceptorRegistry registro) {
         registro.addInterceptor(localeChangeInterceptor());
     }
- 
+
     //Bean para poder acceder a los Messages.properties en código...
     @Bean("messageSource")
     public MessageSource messageSource() {
