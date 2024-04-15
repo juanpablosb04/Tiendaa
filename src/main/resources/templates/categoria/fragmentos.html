@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      xmlns:th="http://www.thymeleaf.org">
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3" sec:authorize='hasRole("ROLE_ADMIN")'>   
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN')">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -74,21 +74,22 @@
                                         <tr><th>#</th>
                                             <th>[[#{categoria.descripcion}]]</th>
                                             <th>[[#{categoria.activo}]]</th>
-                                            <th sec:authorize='hasRole("ROLE_ADMIN")'></th>
-                                        </tr>
+                                            <th></th></tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="categoria, contador : ${categorias}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${categoria.descripcion}]]</td>
                                             <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td sec:authorize='hasRole("ROLE_ADMIN")'>
-                                                <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
-                                                   class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                            <td>
+                                                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                                    <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                                                        class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
+                                                    <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
+                                                       class="btn btn-success">
+                                                        <i cla ss="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                                </div>
                                             </td></tr>
                                     </tbody>
                                 </table>

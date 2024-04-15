@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+      xmlns:th="http://www.thymeleaf.org">
     <body>
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3" sec:authorize='hasRole("ROLE_ADMIN")'>   
+                    <div class="col-md-3">   
                         <button 
                             type="button" 
                             class="btn btn-primary btn-block" 
@@ -110,7 +109,7 @@
                                             <th class="text-center">[[#{producto.total}]]</th>
                                             <th class="text-center">[[#{producto.activo}]]</th>
                                             <th class="text-center">[[#{producto.categoria}]]</th>
-                                            <th sec:authorize='hasRole("ROLE_ADMIN")'></th><th sec:authorize='hasRole("ROLE_ADMIN")'></th></tr>
+                                            <th></th><th></th></tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="producto, contador : ${productos}">
@@ -121,11 +120,10 @@
                                             <td class="text-end">[[${#numbers.formatDecimal(producto.precio*producto.existencias, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>
                                             <td  class="text-center" th:text="${producto.activo} ? 'Activa' : 'Inactiva'" />
                                             <td>[[${producto.categoria.descripcion}]]</td>
-                                            <td sec:authorize='hasRole("ROLE_ADMIN")'> 
-                                                <a th:href="@{/producto/eliminar/}+${producto.idProducto}"
+                                            <td><a th:href="@{/producto/eliminar/}+${producto.idProducto}"
                                                    class="btn btn-danger">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a></td>
-                                            <td sec:authorize='hasRole("ROLE_ADMIN")'>
+                                            <td>
                                                 <a th:href="@{/producto/modificar/}+${producto.idProducto}"
                                                    class="btn btn-success">
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
